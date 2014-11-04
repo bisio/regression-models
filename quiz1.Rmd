@@ -41,3 +41,13 @@ beta1 <- correlation * sd.ratio
 ```
 
 $\hat{\beta^{1}} =$ `r beta1` 
+
+# Question 5
+
+```{r}
+correlation <- 0.4
+quiz1 <- 1.5
+quiz2 <- quiz1 * correlation
+```
+
+$quiz2 =$ `r quiz2`
