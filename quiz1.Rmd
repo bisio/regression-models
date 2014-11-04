@@ -31,3 +31,13 @@ data(mtcars)
 lm(mpg ~ wt,data=mtcars)
 ```
 
+# Question 4
+$$\hat{\beta^{1}} = Cor(Y,X)\frac{Sd(Y)}{Sd(X)}$$
+
+```{r}
+correlation <- .5
+sd.ratio <- 1/.5
+beta1 <- correlation * sd.ratio
+```
+
+$\hat{\beta^{1}} =$ `r beta1` 
