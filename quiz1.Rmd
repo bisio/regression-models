@@ -51,3 +51,35 @@ quiz2 <- quiz1 * correlation
 ```
 
 $quiz2 =$ `r quiz2`
+
+# Question 6
+
+```{r}
+x <- c(8.58, 10.46, 9.01, 9.64, 8.86)
+z <-  (x - mean(x))/sd(x)
+z
+```
+
+# Question 7
+```{r}
+x <- c(0.8, 0.47, 0.51, 0.73, 0.36, 0.58, 0.57, 0.85, 0.44, 0.42)
+y <- c(1.39, 0.72, 1.55, 0.48, 1.19, -1.59, 1.23, -0.65, 1.49, 0.05)
+coef(lm(y ~ x))
+```
+
+# Question 8
+
+Intercept must be 0 since regression line passes through the point $(\bar{X},\bar{Y})$.
+
+# Question 9
+
+```{r}
+x <- c(0.8, 0.47, 0.51, 0.73, 0.36, 0.58, 0.57, 0.85, 0.44, 0.42)
+mean(x)
+```
+
+# Question 10
+
+$$Cor(Y,X)\frac{Sd(Y)}{Sd(X)} \frac{1}{Cor(Y,X)}\frac{Sd(Y)}{Sd(X)} = \frac{Var(Y)}{Var(X)}$$
+
+
