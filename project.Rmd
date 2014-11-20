@@ -1,0 +1,66 @@
+---
+title: "Regression Models Project"
+author: "Andrea Bisognin"
+date: "Sunday, November 16, 2014"
+output: pdf_document
+---
+
+# Report
+
+# Executive Summary
+
+Here we try to answer two questions.
+1) Is an automatic or manual trasmission better for MPG?
+Short answer is "they are equivalent"
+
+2) Quantify the MPG difference between automatic and manual transmissions?
+Short answer is "there is no significant difference"
+
+## Question 1: "Is an automatic or manual trasmission better for MPG"? 
+
+### Marginal dependency on transmission
+
+As a first approach i tried to fit a model considering only transmission as regressor.
+
+```{r load_stuff_and_fit}
+data(mtcars)
+fit <- lm(mpg ~ am ,mtcars)
+summary(fit)
+```
+
+$\beta_1$ coefficient should be interpreted as the difference between mean mpg in cars with manual transmission vs manual transmission.
+A visual inspection of data (Figure 1) and in particular of residuals show that data present a certain level of heteroskedasticity.
+Moreover in this dummy model we exclude potentially important variables we should correct for as weight.
+
+### Adjusted with  wt 
+
+```{r adjusted}
+fit.adj <- lm(mpg ~ am + wt ,data=mtcars)
+summary(fit.adj)
+```
+
+When we adjust for weigth effect of transmission is ininfluent. 
+$\beta_1$ changes sign and t test is no longer significant.
+So we can conclude that automatic or manual transmission are equivalent when we afjust for weight.
+
+## Question 2 
+
+There is no significant difference when we adjust for weight
+
+# Appendix
+
+## Figure 1 ScatterPlot and regression line of unadjusted model
+```{r,fig.width=4,fig.height=4}
+with(mtcars, plot(am, mpg))
+abline(coef=coef(fit),lwd=2,col="red")
+```
+
+## Figure 2 residuals of unadjusted model
+```{r, fig.cap="Figure 2 residuals of unadjusted model",fig.height=4,fig.width=4}
+plot(mtcars$am,resid(fit),xlab="trasmission",ylab="residuals",axes=F)
+axis(2,at=seq(-15,15,5))
+axis(1,at=c(0,1),labels=c("automatic","manual"))
+abline(h=0,col="blue")
+```
+
+

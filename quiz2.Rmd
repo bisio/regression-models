@@ -1,0 +1,50 @@
+---
+title: "quiz2"
+author: "Andrea Bisognin"
+date: "11/14/2014"
+output: pdf_document
+---
+
+# Question 1 & 2
+
+```{r}
+x <- c(0.61, 0.93, 0.83, 0.35, 0.54, 0.16, 0.91, 0.62, 0.62)
+y <- c(0.67, 0.84, 0.6, 0.18, 0.85, 0.47, 1.1, 0.65, 0.36)
+fit <- lm(y~x)
+summary(fit)
+```
+
+# Question 3
+```{r}
+data(mtcars)
+cars.fit <- lm(mpg ~ wt,data=mtcars)
+mean.wt <- mean(mtcars$wt)
+predict(cars.fit,newdata = data.frame(wt=mean.wt),interval="confidence")
+```
+
+# Question 5
+
+```{r}
+predict(cars.fit, newdata=data.frame(wt=3), interval="prediction")
+```
+
+# Question 6
+
+```{r}
+cars.coef <- summary(cars.fit)$coefficients
+cars.coef[2,1]*2 + c(-1,1) * qt(.975,30)* cars.coef[2,2]*2
+```
+
+```{r}
+cars.coef <- summary(lm( mpg ~ I(wt/2),data=mtcars ))$coefficients
+cars.coef[2,1] + c(-1,1) * qt(.975,30)* cars.coef[2,2]
+```
+
+# Question 9
+
+```{r}
+numerator <- sum(resid(cars.fit)^2)
+denominator <- with(mtcars, sum((mpg - mean(mpg))^2)  ) 
+numerator/denominator
+```
+
